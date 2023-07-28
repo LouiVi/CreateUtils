@@ -56,7 +56,7 @@
 				function OnStart()<br>
 				{<br>
 				 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br><br>
-				 &nbsp;&nbsp;btn = app.AddButton( lay, "Press Me" );<br>				
+				 &nbsp;&nbsp;btn = app.AddButton( lay, "Guid" );<br>				
 				 &nbsp;&nbsp;btn.SetOnTouch( CallPlugin );<br>
 				 <b id="snip1"  style="font-size:100%">
 				 &nbsp;&nbsp;utils = app.CreateUtils();<br>
@@ -79,18 +79,12 @@
 		
 		<br>
 		<p>
-			<i>External Links: <a onclick="return OpenUrl(this.href)" target="_blank" href="http://droidscript.org">droidscript.org</a></i>
-		</p>
-		
-		<br>
-		<p>
 			<fieldset>
 			<legend>More Examples:</legend>
-			<i><a target="_self" href="Html/Alert.html"> Alert </a></i>
+			<i><a target="_self" href="Alert.htm" onClick="return OpenUrl(this.href);"> Alert </a></i>
 		  </fieldset>
 		</p>
-		<a href="" onClick="app.SetClipboardText(document.getElementsByTagName('html')[0].innerHTML);">CLICK</a>
-	</div><!-- /content -->
+		</div><!-- /content -->
 	
 </div><!-- /page -->
 

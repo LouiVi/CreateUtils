@@ -55,6 +55,8 @@ self.GetGradientColors = function (colors) { return _utils.GetGradientColors(col
 self.CreatePlugin = function (name) { _utils.CreatePlugin(name);}
 self.ZipFolder = function (source, destination) { _utils.ZipFolder(source,destination);}
 self.CountMethods = function () { return _utils.CountMethods();}
+self.SetTimeout = function (funcName, interval) { return _utils.SetTimeout(funcName, interval);}
+self.SetInterval = function (funcName, interval) { return _utils.SetInterval(funcName, interval);}
 
 //Misc/PluginTemplate.txt
 }
@@ -138,6 +140,14 @@ Utils.Prompt = function(msg, dflt) {
 
 Utils.Confirm = function(msg) {
 	return confirm(msg);
+};
+
+Utils.SetTimeout = function(funcName, interval) {
+	setTimeout(funcName, interval);
+};
+
+Utils.SetInterval = function(funcName, interval) {
+	return setInterval(funcName, interval);
 };
 
 Utils.GetVersion = function( num, txt ) { 
@@ -626,7 +636,7 @@ Utils.Guid = function () {
 
 Utils.GetMethods = function()
 {
-	return "Alert,CelsiusToFahrenheit,CelsiusToKelvin,Clone,Confirm,CountMethods,CreateCanvas,CreatePlugin,Document,Extend,FahrenheitToCelsius,FahrenheitToKelvin,GetDecFromHex,GetFileTitle,GetGradientColors,GetMethods,GetSource,GetObjectFunctions,GetObjectFunctionsParameterNames,GetType,GetVersion,Guid,GuidAlternate,HSVToRGB,Hex,HexToDarkerHex,HexToLighterHex,HexToRgb,HexToRgba,ImageToCanvas,KelvinToCelsius,KelvinToFahrenheit,KilometersToMiles,MilesToKilometers,Parse,Prompt,RGBToHSV,RandomFloatRange,RandomHexColor,RandomIntegerRange,Remove,RemoveAll,RgbToHex,RgbaToHex,Shuffle,Stringify,ToUnicode,Window,ZipFolder";
+	return "Alert,CelsiusToFahrenheit,CelsiusToKelvin,Clone,Confirm,CountMethods,CreateCanvas,CreatePlugin,Document,Extend,FahrenheitToCelsius,FahrenheitToKelvin,GetDecFromHex,GetFileTitle,GetGradientColors,GetMethods,GetSource,GetObjectFunctions,GetObjectFunctionsParameterNames,GetType,GetVersion,Guid,GuidAlternate,HSVToRGB,Hex,HexToDarkerHex,HexToLighterHex,HexToRgb,HexToRgba,ImageToCanvas,KelvinToCelsius,KelvinToFahrenheit,KilometersToMiles,MilesToKilometers,Parse,Prompt,RGBToHSV,RandomFloatRange,RandomHexColor,RandomIntegerRange,Remove,RemoveAll,RgbToHex,RgbaToHex,SetInterval,SetTimeout,Shuffle,Stringify,ToUnicode,Window,ZipFolder";
 };
 
 Utils.CountMethods = function ()

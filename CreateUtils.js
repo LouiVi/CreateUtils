@@ -3,6 +3,7 @@
 //Called when application is started.
 function OnStart()
 {
+//app.CopyFile( "Html/Alert.html", "Alert.htm" );
 ide.MakePlugin("Utils");
 app.Exit( );
 app.Wait( 2, true );
