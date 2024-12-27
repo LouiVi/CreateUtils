@@ -1,3 +1,4 @@
+
 <!DOCTYPE html> 
 <html>
 
@@ -43,30 +44,30 @@
 		
 		<p>Then you can create an instance of the plugin object when you need it like this:</p>
 		
-		<div class="samp">&nbsp;var utils = app.CreateUtils()</div>
+		<div class="samp">&nbsp;plg = app.CreateUtils()</div>
 		  
 		<br>
 		<p>Examples:</p>
 		
 		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
-			<h3>Example - Guid</h3>
+			<h3>Example - Test</h3>
 			<div id="examp1" style="font-size:70%">
-				app.LoadPlugin( "Utils" );<br>
+				app.LoadPlugin( "Utils" )<br>
 				<br>
 				function OnStart()<br>
 				{<br>
-				 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br><br>
-				 &nbsp;&nbsp;btn = app.AddButton( lay, "Guid" );<br>				
-				 &nbsp;&nbsp;btn.SetOnTouch( CallPlugin );<br>
+				 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" )<br><br>
+				 &nbsp;&nbsp;btn = app.AddButton( lay, "Press Me" )<br>				
+				 &nbsp;&nbsp;btn.SetOnTouch( CallPlugin )<br>
 				 <b id="snip1"  style="font-size:100%">
-				 &nbsp;&nbsp;utils = app.CreateUtils();<br>
+				 &nbsp;&nbsp;plg = app.CreateUtils()<br>
 				 </b><br>
-				 &nbsp;&nbsp;app.AddLayout( lay );<br>
+				 &nbsp;&nbsp;app.AddLayout( lay )<br>
 				}<br>
 				<br>
 				function CallPlugin()<br>
 				{<br>
-				&nbsp;&nbsp;utils.Alert( utils.Guid() );<br>
+				&nbsp;&nbsp;alert( plg.GetMethods() )<br>
 				}<br><br>
 				
 			</div>
@@ -79,12 +80,10 @@
 		
 		<br>
 		<p>
-			<fieldset>
-			<legend>More Examples:</legend>
-			<i><a target="_self" href="Alert.htm" onClick="return OpenUrl(this.href);"> Alert </a></i>
-		  </fieldset>
+			<i>External Links: <a onclick="return OpenUrl(this.href)" target="_blank" href="http://droidscript.org">droidscript.org</a></i>
 		</p>
-		</div><!-- /content -->
+		
+	</div><!-- /content -->
 	
 </div><!-- /page -->
 

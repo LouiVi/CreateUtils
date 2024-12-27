@@ -1,30 +1,40 @@
-//app.LoadPlugin( "Utils" ); utils = app.CreateUtils();
+cfg.Light, cfg.Portrait, cfg.MUI, cfg.Share;
 
+app.LoadPlugin( "Utils" )
 //Called when application is started.
 function OnStart()
 {
-//app.CopyFile( "Html/Alert.html", "Alert.htm" );
 ide.MakePlugin("Utils");
-app.Exit( );
-app.Wait( 2, true );
-	utils = app.CreateUtils();
- // ide.MakePlugin("Utils");
+utils = app.CreateUtils();
+//alert(utils.GetSource());
+//alert(utils.GetMethods().split(",").join("\r"));
+//alert(utils.CountMethods());
 	//Create a layout with objects vertically centered.
-	lay = app.CreateLayout( "Linear", "VCenter,FillXY" )
-	lay.SetBackColor( "#ffffff" );
-	spinner = app.CreateSpinner( "-- Choose --,"+utils.GetMethods(), 0.65, 0.1 );
-	spinner.SetOnChange( Sample );
-	spinner.SetTextColor( "#000000" )
+	lay = app.CreateLayout( "Linear", "Vertical,HCenter,FillXY" )
+
+spin = app.CreateSpinner( utils.GetMethods().split(","), 1, -1);
+spin.SetOnChange( spin_OnChange );
+spin.SetOnTouch( spin_OnTouch );
+lay.AddChild( spin );
 	//Create a text label and add it to layout.
-	//txt = app.CreateText( utils.GetMethods(), 1, 0.4, "multiline" );
-	//txt.SetTextSize( 16 )
-	lay.AddChild( spinner )
+	txt = app.CreateText( )
+	txt.SetTextSize( 32 )
+	lay.AddChild( txt )
 	
 	//Add layout to app.	
 	app.AddLayout( lay )
+	//utils.ForceDownload("https://www.google.com/", "/storage/emulated/0/Download/go.html");
 }
 
-function Sample(item, index)
+function spin_OnChange(item, index)
 {
-	alert(eval("utils."+item));
+	alert(item);
+}
+
+function spin_OnTouch()
+{
+	e = eval("utils."+spin.GetText());
+	alert(utils.GetObjectFunctionsParameterNames(e));
+	alert(utils.GetObjectFunctionsParameterTypes(e));
+	txt.SetText(utils.GetObjectFunctionsParameterNames(e));
 }
