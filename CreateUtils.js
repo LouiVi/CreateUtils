@@ -33,8 +33,24 @@ function spin_OnChange(item, index)
 
 function spin_OnTouch()
 {
+var g = new Array();
 	e = eval("utils."+spin.GetText());
+	f = utils.GetObjectFunctionsParameterNames(e);
 	alert(utils.GetObjectFunctionsParameterNames(e));
 	alert(utils.GetObjectFunctionsParameterTypes(e));
+	//ee = f + "".split(",");
+	//alert(f[0]);
+	//alert(ee.length);
+	//if(ee.length>0) {
+		for(d=0;d<f.length;d++){
+	//	alert("D:"+d);
+	ask = utils.Prompt()
+			g[0] = eval(f[d] + "='" + ask + "';");
+			alert(f[d] + "='" + ask + "';");
+		}
+		eval("utils."+spin.GetText()+"("+f[0]+","+f[1]+");");
+	//}
+//	eval("utils."+spin.GetText());
+	
 	txt.SetText(utils.GetObjectFunctionsParameterNames(e));
 }

@@ -44,30 +44,30 @@
 		
 		<p>Then you can create an instance of the plugin object when you need it like this:</p>
 		
-		<div class="samp">&nbsp;plg = app.CreateUtils()</div>
+		<div class="samp">&nbsp;utils = app.CreateUtils();</div>
 		  
 		<br>
 		<p>Examples:</p>
 		
 		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
-			<h3>Example - Test</h3>
+			<h3>Example - GetMethods()</h3>
 			<div id="examp1" style="font-size:70%">
-				app.LoadPlugin( "Utils" )<br>
+				app.LoadPlugin( "Utils" );<br>
 				<br>
 				function OnStart()<br>
 				{<br>
-				 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" )<br><br>
-				 &nbsp;&nbsp;btn = app.AddButton( lay, "Press Me" )<br>				
-				 &nbsp;&nbsp;btn.SetOnTouch( CallPlugin )<br>
+				 &nbsp;&nbsp;var lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br><br>
+				 &nbsp;&nbsp;var btn = app.AddButton( lay, "Press Me to Get Methods" );<br>				
+				 &nbsp;&nbsp;btn.SetOnTouch( CallPlugin );<br>
 				 <b id="snip1"  style="font-size:100%">
-				 &nbsp;&nbsp;plg = app.CreateUtils()<br>
+				 &nbsp;&nbsp;utils = app.CreateUtils();<br>
 				 </b><br>
-				 &nbsp;&nbsp;app.AddLayout( lay )<br>
+				 &nbsp;&nbsp;app.AddLayout( lay );<br>
 				}<br>
 				<br>
 				function CallPlugin()<br>
 				{<br>
-				&nbsp;&nbsp;alert( plg.GetMethods() )<br>
+				&nbsp;&nbsp;utils.Alert( utils.GetMethods().split(",").join("\r\n") );<br>
 				}<br><br>
 				
 			</div>

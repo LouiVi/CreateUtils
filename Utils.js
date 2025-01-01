@@ -4,8 +4,8 @@ app.CreateUtils = function() {
 
 function Utils() {
 var self = this;
-self.ForceDownload = function (url, fileName) {  _utils.ForceDownload(url, fileName);}
 self.Alert = function( msg ){_utils.Alert(msg);};
+self.ForceDownload = function (url, fileName) {  _utils.ForceDownload(url, fileName);}
 self.Prompt = function( msg, dflt ){return _utils.Prompt(msg, dflt);};
 self.Confirm = function( msg ){return _utils.Confirm(msg);};
 self.GetVersion = function( num, txt ) { return _utils.GetVersion(num, txt);};
@@ -59,6 +59,10 @@ self.SetTimeout = function (funcName, interval) { return _utils.SetTimeout(funcN
 self.SetInterval = function (funcName, interval) { return _utils.SetInterval(funcName, interval);}
 self.MakePlugin = function ( name ) { _utils.MakePlugin( name );}
 self.SetTheme = function ( themeColor ) { _utils.SetTheme( themeColor );}
+self.GetCookie = function ( cname ) { return _utils.GetCookie( cname  );}
+self.SetCookie = function (cname, cvalue, exdays) { _utils.SetCookie(cname, cvalue, exdays);}
+self.GetLocalStorage= function (lsKey, lsIndex) { _utils.GetLocalStorage(lsKey, lsIndex);}
+self.GetSessionStorage= function (lsKey, lsIndex) { _utils.GetSessionStorage(lsKey, lsIndex);}
 }
 
 
@@ -75,6 +79,10 @@ window._utils = require('utils');
 (function () { 'use strict';
 
 var Utils = {};
+
+Utils.Alert = function(msg) {
+	alert(msg);
+};
 
 Utils.GetType = function() {
 return "Utils";
@@ -96,6 +104,30 @@ Utils.ZipFolder = function( source, destination ) {
     add( source )
     zu.Close()
 };
+
+Utils.GetLocalStorage = function(lsKey, lsIndex) {
+        var ls = localStorage;
+        if(ls && ls.getItem(lsKey) ) {
+            var lsValue = ls.getItem(lsKey);
+            var lsArray = JSON.parse(lsValue);
+            if( lsArray['data'] != undefined && lsArray['data'][lsIndex] != undefined){
+                return lsArray['data'][lsIndex];
+            }
+        }
+        return '';
+}
+
+Utils.GetSessionStorage = function(lsKey, lsIndex) {
+        var ls = sessionStorage;
+        if(ls && ls.getItem(lsKey) ) {
+            var lsValue = ls.getItem(lsKey);
+            var lsArray = JSON.parse(lsValue);
+            if( lsArray['data'] != undefined && lsArray['data'][lsIndex] != undefined){
+                return lsArray['data'][lsIndex];
+            }
+        }
+        return '';
+}
 
 Utils.CreatePlugin = function(name) {
 if(!app.FileExists(  app.GetAppPath() + "/" +  name + ".js")) {
@@ -121,49 +153,70 @@ Utils.GuidAlternate = function() {
     });
 };  
 
-Utils.Alert = function(msg) {
-alert(msg);
-};
 
 Utils.Prompt = function(msg, dflt) {
-return prompt(msg, dflt);
+	return prompt(msg, dflt);
 };
 
 Utils.Confirm = function(msg) {
-return confirm(msg);
+	return confirm(msg);
 };
 
 Utils.SetTimeout = function(funcName, interval) {
-setTimeout(funcName, interval);
+	setTimeout(funcName, interval);
 };
 
 Utils.SetInterval = function(funcName, interval) {
-return setInterval(funcName, interval);
+	return setInterval(funcName, interval);
 };
 
 Utils.GetVersion = function( num, txt ) {
-return "1.69.71";
+	return "1.69.71";
 };
 
 Utils.GetSource = function() {
-return app.ReadFile( "/data/user/0/com.smartphoneremote.androidscriptfree/app_Plugins/utils/Utils.js" );
+	return app.ReadFile( "/data/user/0/com.smartphoneremote.androidscriptfree/app_Plugins/utils/Utils.js" );
 };
 
 Utils.Document = function() {
-return document ? document : 'document object not exist';
+	return document ? document : 'document object not exist';
 };
 
 Utils.Window = function() {
-return window ? window : 'window object not exist';
+	return window ? window : 'window object not exist';
 };
 
 Utils.Stringify = function(str) {
-return JSON.stringify(str);
+	return JSON.stringify(str);
 };
 
 Utils.Parse = function(str) {
-return JSON.parse(str);
+	return JSON.parse(str);
 };
+
+Utils.SetCookie = function(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  this.Document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+};
+
+Utils.GetCookie = function(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+};
+
 
 Utils.ToUnicode = function( string ) {
     return string.replace(/[\s\S]/g, function (escape) {
@@ -493,7 +546,7 @@ return kelvin - 273.15;
 Utils.ImageToCanvas = function( image ) {
 var width = image.width;
 var height = image.height;
-var canvas = document.createElement( 'canvas' );
+var canvas = this.Document.createElement( 'canvas' );
 canvas.width = width;
 canvas.height = height;
 var context = canvas.getContext( '2d' );
@@ -503,7 +556,7 @@ return canvas;
 
 Utils.CreateCanvas = function(container, image) {
 var elem = self.imageToCanvas(image);
-document.getElementById(container).appendChild(elem);
+this.Document.getElementById(container).appendChild(elem);
 };
 
 Utils.GetDecFromHex = function(h) {
@@ -541,23 +594,7 @@ Utils.Guid = function () {
 
 
 Utils.GetMethods = function() {
-return this.GetObjectFunctions(this).join(",");
-/*
-var obj, objName = this;
-    if(typeof objName === 'object') {
-    obj = objName;
-    } else {
-obj = eval("new "+objName+"()") ? eval("new "+objName+"()") : eval(objName);
-}
-var list = [];
-    for (var Key in obj) {
-      if (obj.hasOwnProperty(Key) && (typeof obj[Key] === 'function')) {
-        list.push(Key);
-      }
-    }
-    list.sort();
-    return list.join(",");*/
-//return Utils.GetObjectFunctions().join("\n"); /*"Alert,CelsiusToFahrenheit,CelsiusToKelvin,Clone,Confirm,CountMethods,CreateCanvas,CreatePlugin,Document,Extend,FahrenheitToCelsius,FahrenheitToKelvin,GetDecFromHex,GetFileTitle,GetGradientColors,GetMethods,GetSource,GetObjectFunctions,GetObjectFunctionsParameterNames,GetType,GetVersion,Guid,GuidAlternate,HSVToRGB,Hex,HexToDarkerHex,HexToLighterHex,HexToRgb,HexToRgba,ImageToCanvas,KelvinToCelsius,KelvinToFahrenheit,KilometersToMiles,MilesToKilometers,Parse,Prompt,RGBToHSV,RandomFloatRange,RandomHexColor,RandomIntegerRange,Remove,RemoveAll,RgbToHex,RgbaToHex,SetInterval,SetTimeout,Shuffle,Stringify,ToUnicode,Window,ZipFolder";*/
+	return this.GetObjectFunctions(this).join(",");
 };
 
 Utils.CountMethods = function () {
@@ -569,21 +606,21 @@ Utils.ForceDownload = function (url, fileName) {
 	xhr.open("GET", url, true);
 	xhr.responseType = "blob";
 	xhr.onload = function() {
-		var urlCreator = window.URL || window.webkitURL;
+		var urlCreator = this.Window.URL || this.Window.webkitURL;
 		var imageUrl = urlCreator.createObjectURL(this.response);
-		var tag = document.createElement("a");
+		var tag = this.Document.createElement("a");
 		tag.href = imageUrl;
 		tag.download = fileName;
-		document.body.appendChild(tag);
+		this.Document.body.appendChild(tag);
 		tag.click();
-		document.body.removeChild(tag);
+		this.Document.body.removeChild(tag);
 	};
 	xhr.send();
 };
 
 Utils.SetTheme = function(themeColor){
-	app.SetStatusBarColor(  themeColor)
-	app.SetNavBarColor( themeColor )
+	app.SetStatusBarColor(  themeColor);
+	app.SetNavBarColor( themeColor );
 };
 
 //Build and install a plugin using current project.
