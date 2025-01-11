@@ -8,6 +8,7 @@ self.Alert = function( msg ){_utils.Alert(msg);};
 self.ForceDownload = function (url, fileName) {  _utils.ForceDownload(url, fileName);}
 self.Prompt = function( msg, dflt ){return _utils.Prompt(msg, dflt);};
 self.Confirm = function( msg ){return _utils.Confirm(msg);};
+self.RealPath = function() {return _utils.RealPath();};
 self.GetVersion = function( num, txt ) { return _utils.GetVersion(num, txt);};
 self.GetSource = function( ){ return _utils.GetSource(); };
 self.Document = function() { return _utils.Document();};
@@ -61,8 +62,9 @@ self.MakePlugin = function ( name ) { _utils.MakePlugin( name );}
 self.SetTheme = function ( themeColor ) { _utils.SetTheme( themeColor );}
 self.GetCookie = function ( cname ) { return _utils.GetCookie( cname  );}
 self.SetCookie = function (cname, cvalue, exdays) { _utils.SetCookie(cname, cvalue, exdays);}
-self.GetLocalStorage= function (lsKey, lsIndex) { _utils.GetLocalStorage(lsKey, lsIndex);}
-self.GetSessionStorage= function (lsKey, lsIndex) { _utils.GetSessionStorage(lsKey, lsIndex);}
+self.GetLocalStorage= function (lsKey, lsIndex) { return _utils.GetLocalStorage(lsKey, lsIndex);}
+self.GetSessionStorage= function (lsKey, lsIndex) { return _utils.GetSessionStorage(lsKey, lsIndex);}
+self.StringToBinary= function (str) { return _utils.StringToBinary(str);}
 }
 
 
@@ -80,12 +82,22 @@ window._utils = require('utils');
 
 var Utils = {};
 
+Utils.StringToBinary = function(str) {
+    return str.split('').map(char => {
+        return char.charCodeAt(0).toString(2).padStart(8, '0');
+    }).join('');
+};
+
 Utils.Alert = function(msg) {
 	alert(msg);
 };
 
 Utils.GetType = function() {
-return "Utils";
+	return "Utils";
+};
+
+Utils.RealPath = function() {
+	return "/storage/emulated/0/";
 };
 
 Utils.ZipFolder = function( source, destination ) {

@@ -2,9 +2,12 @@ cfg.Light, cfg.Portrait, cfg.MUI, cfg.Share;
 
 app.LoadPlugin( "Utils" )
 //Called when application is started.
+
+
+
 function OnStart()
 {
-ide.MakePlugin("Utils");
+//ide.MakePlugin("Utils");
 utils = app.CreateUtils(null);
 //alert(utils.GetSource());
 //alert(utils.GetMethods().split(",").join("\r"));
@@ -17,8 +20,11 @@ spin.SetOnChange( spin_OnChange );
 spin.SetOnTouch( spin_OnTouch );
 lay.AddChild( spin );
 	//Create a text label and add it to layout.
-	txt = app.CreateText( )
-	txt.SetTextSize( 32 )
+	// Example usage:
+const binaryString = utils.StringToBinary("Hello");
+//alert();
+	txt = app.CreateText( binaryString)
+	txt.SetTextSize( 18 )
 	lay.AddChild( txt )
 	
 	//Add layout to app.	
