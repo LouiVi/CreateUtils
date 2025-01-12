@@ -7,7 +7,7 @@ app.LoadPlugin( "Utils" )
 
 function OnStart()
 {
-//ide.MakePlugin("Utils");
+ide.MakePlugin("Utils");
 utils = app.CreateUtils(null);
 //alert(utils.GetSource());
 //alert(utils.GetMethods().split(",").join("\r"));

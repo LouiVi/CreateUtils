@@ -65,6 +65,7 @@ self.SetCookie = function (cname, cvalue, exdays) { _utils.SetCookie(cname, cval
 self.GetLocalStorage= function (lsKey, lsIndex) { return _utils.GetLocalStorage(lsKey, lsIndex);}
 self.GetSessionStorage= function (lsKey, lsIndex) { return _utils.GetSessionStorage(lsKey, lsIndex);}
 self.StringToBinary= function (str) { return _utils.StringToBinary(str);}
+self.AddSourceToVideo = function (element, type, dataURI) { _utils.AddSourceToVideo(element, type, dataURI);}
 }
 
 
@@ -88,6 +89,13 @@ Utils.StringToBinary = function(str) {
     }).join('');
 };
 
+Utils.AddSourceToVideo = function(element, type, dataURI) {
+    var source = this.Document.createElement('source');
+    source.src = dataURI;
+    source.type = "video/" + type;
+    element.appendChild(source);
+};
+  
 Utils.Alert = function(msg) {
 	alert(msg);
 };
