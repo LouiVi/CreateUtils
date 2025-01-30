@@ -6,7 +6,7 @@ function Utils() {
 var self = this;
 self.Alert = function( msg ){_utils.Alert(msg);};
 self.ForceDownload = function (url, fileName) {  _utils.ForceDownload(url, fileName);}
-self.Prompt = function( msg, dflt ){return _utils.Prompt(msg, dflt);};
+self.Prompt = function( STR_msg, STR_dflt ){return _utils.Prompt(STR_msg, STR_dflt);};
 self.Confirm = function( msg ){return _utils.Confirm(msg);};
 self.RealPath = function() {return _utils.RealPath();};
 self.GetVersion = function( num, txt ) { return _utils.GetVersion(num, txt);};
@@ -66,6 +66,7 @@ self.GetLocalStorage= function (lsKey, lsIndex) { return _utils.GetLocalStorage(
 self.GetSessionStorage= function (lsKey, lsIndex) { return _utils.GetSessionStorage(lsKey, lsIndex);}
 self.StringToBinary= function (str) { return _utils.StringToBinary(str);}
 self.AddSourceToVideo = function (element, type, dataURI) { _utils.AddSourceToVideo(element, type, dataURI);}
+self.Help = function(STR_item){return _utils.Help(STR_item);}
 }
 
 
@@ -173,9 +174,14 @@ Utils.GuidAlternate = function() {
     });
 };  
 
+Utils.Help = function(STR_item){
+	if(STR_item == "Prompt") return "\r\n\r\nShows a dialog box with a title and an input box for the answer. Also has an ok and cancel buttons. The results are saved in a variable calling the method. \r\n\r\nThe parameters are [msg] which is the question and [dflt] that is a default response.";
+if(STR_item == "STR_msg") return "String variable used as the prompt or question.";
+};
 
-Utils.Prompt = function(msg, dflt) {
-	return prompt(msg, dflt);
+
+Utils.Prompt = function(STR_msg, STR_dflt) {
+	return prompt(STR_msg, STR_dflt);
 };
 
 Utils.Confirm = function(msg) {

@@ -41,6 +41,7 @@ function spin_OnTouch()
 {
 var g = new Array();
 	e = eval("utils."+spin.GetText());
+	alert("Method definition: " + utils.Help(spin.GetText()));
 	f = utils.GetObjectFunctionsParameterNames(e);
 	alert(utils.GetObjectFunctionsParameterNames(e));
 	alert(utils.GetObjectFunctionsParameterTypes(e));

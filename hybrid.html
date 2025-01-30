@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+    <meta charset="UTF-8">
+		<script src="ds:/Sys/app.js"></script>
+    <script>_hybrid=false</script>
+
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/material-ui.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/material-ui-lab.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/swipeable-views.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/material-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/fonts.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/rome.standalone.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/material-datetime-picker.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/html" href="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/material-datetime-picker.css">
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/date-time-picker/js/draggabilly.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/date-time-picker/js/datetimepicker.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/obj.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/enjine-ui.js"></script>
+
+    <script>
+class Main extends App
+   {
+       onStart()
+       {
+           // Set theme colors.
+           ui.setThemeColor(  ui.theme.primary, "#999999" )
+
+           // Create a full screen layout.
+           this.main = ui.addLayout( "main", "Linear", "Center,FillXY" )
+
+           this.apb = ui.addAppBar( this.main, "[APPTITLE]", "Menu,Primary" )
+           this.apb.setOnMenu( this.showDrawer )
+
+           // Add an icon buttons to the appbar
+           this.btn1 = ui.addButton( this.apb.layout, "share", "icon" )
+           this.btn2 = ui.addButton( this.apb.layout, "settings", "icon" )
+           //this.btn3 = ui.addButton( this.apb.layout, "more_horiz", "icon" )
+
+           var clients = ["Bebi Castro","Nerea Ruiz","Ninel Conde","Abigail Howell","Todas las anteriores"];//[OPTIONS];//["50 Cent", "Ed Sheeran", "Eminem", "Jay-Z", "Kool & The Gang", "Linkin Park", "Louis Armstrong","Ludacris","Lynyrd Skynyrd",  "Paul Simon", "Psy", "Queen","Vanessa Williams"]
+
+        // Adds a select control to the main layout
+        // Passing `Radio` option will render the items as radiogroup
+        this.sel = ui.addSelect(this.main, clients, "Filled,Primary", 0.95, 0.075)
+        this.sel.label = "[QUESTION]:"
+        //this.sel.setFontFile("Misc/ArchitectsDaughter-Regular.ttf");
+        // Add a callback handler when an item is selected
+        //this.sel.setOnChange( this.onArtistChange )
+         this.sel.margins = 0.042
+           // Adds a drawer layout
+           this.drawLay = ui.addLayout(null, "Linear", "Top")
+
+           // Adds a drawer to the app and pass the drawer layout
+           this.drawer = ui.addDrawer(this.drawLay, "left")
+
+           // Adds a list to the drawer layout
+           let lst = [
+               ["folder", "Folders"],
+               ["music_note", "Audios"],
+               ["photo", "Photos"]
+           ]
+           this.lstMenu = ui.addList(this.drawLay, lst, "Icon", 1 )
+           this.lstMenu.label = "Main navigation"
+
+           // Adds text and icon to main layout.
+           this.text = ui.addText( this.main, "Hello World!", "Center,H4,Secondary", 1 )
+           this.text.margins = 0.042
+
+           // Adds an icon with a margin.
+           this.icon = ui.addText( this.main, "sentiment_satisfied", "Icon" )
+           this.icon.textSize = "2.9em"
+           this.icon.textColor = "#ff88ff"
+
+           // Adds and FAB button.
+           this.fab = ui.addFAB( this.main, "add", "Secondary,Extended,Left", "New message" )
+       }
+
+       showDrawer() {
+           this.drawer.show()
+       }
+   }
+
+</script>
+</head>
+
+
+<body onload="if( typeof onStart=='function' ) onStart(); else main = new Main();app.ShowPopup('Hello');">
+
+<link id="_id_theme" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/light.css">
+<link rel="stylesheet" id="_id_picker_theme" href="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/date-time-picker/css/light.css">
+<link rel="stylesheet" id="_id_dtpicker_theme" href="https://cdn.jsdelivr.net/gh/enjine-io/ui@main/libs/material-datetime-picker-light.css">
+
+
+<div id="root"> </div>
+<div id="popups"> </div>
+<div id="drawer"> </div>
+
+</body>
+
+</html>
