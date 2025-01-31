@@ -1,4 +1,4 @@
-cfg.Light, cfg.Portrait, cfg.MUI, cfg.Share;
+cfg.Light, cfg.Portrait, cfg.MUI;
 
 app.LoadPlugin( "Utils" )
 //Called when application is started.
@@ -9,6 +9,7 @@ function OnStart()
 {
 ide.MakePlugin("Utils");
 utils = app.CreateUtils(null);
+//utils.MakePlugin("Utils");
 //alert(utils.GetSource());
 //alert(utils.GetMethods().split(",").join("\r"));
 //alert(utils.CountMethods());
