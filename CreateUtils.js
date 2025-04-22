@@ -1,14 +1,21 @@
 cfg.Light, cfg.Portrait, cfg.MUI;
-
+ide.MakePlugin("Utils");
 app.LoadPlugin( "Utils" )
 //Called when application is started.
 
 
 
+
 function OnStart()
 {
-ide.MakePlugin("Utils");
+app.CopyFile( "Html/fs.js", "fs.js" )
+
+//app.Wait(1);
+//app.Exit();
 utils = app.CreateUtils(null);
+alert(utils.lastNames[200]);
+alert(utils.TimeEnum().second);
+app.WriteFile("methods.txt", utils.GetMethods().split(",").join("\r\n"));
 //utils.MakePlugin("Utils");
 //alert(utils.GetSource());
 //alert(utils.GetMethods().split(",").join("\r"));
