@@ -8,12 +8,12 @@ app.LoadPlugin( "Utils" )
 
 function OnStart()
 {
-app.CopyFile( "Html/fs.js", "fs.js" )
+//app.CopyFile( "Html/fs.js", "fs.js" )
 
 //app.Wait(1);
 //app.Exit();
 utils = app.CreateUtils(null);
-alert(utils.lastNames[200]);
+alert(utils.LastNames[utils.LastNames.length-1]);
 alert(utils.TimeEnum().second);
 app.WriteFile("methods.txt", utils.GetMethods().split(",").join("\r\n"));
 //utils.MakePlugin("Utils");

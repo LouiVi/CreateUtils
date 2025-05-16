@@ -3,6 +3,7 @@ Alert
 CelsiusToFahrenheit
 CelsiusToKelvin
 Clone
+Color
 CompressString
 Confirm
 CountMethods
@@ -12,6 +13,7 @@ Document
 Extend
 FahrenheitToCelsius
 FahrenheitToKelvin
+FixPath
 ForceDownload
 GetCookie
 GetDecFromHex
@@ -22,6 +24,7 @@ GetMethods
 GetObjectFunctions
 GetObjectFunctionsParameterNames
 GetObjectFunctionsParameterTypes
+GetRandomColor
 GetSessionStorage
 GetSource
 GetType
@@ -55,6 +58,7 @@ Remove
 RemoveAll
 RgbToHex
 RgbaToHex
+SQLite
 SessionStorageLeftSize
 SessionStorageMaxSize
 SetCookie
